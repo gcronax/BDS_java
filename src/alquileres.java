@@ -8,8 +8,26 @@ public class alquileres {
         try {
             conn = DriverManager.getConnection(url); // Establecer conexión
             System.out.println("Conexión establecida");
-            System.out.println("dime que deseas hacer: " +
-                    "\n 1 consultar datos: ");
+            Scanner scan= new Scanner(System.in);
+
+            int aux;
+            do {
+                System.out.println("dime que deseas hacer: " +
+                        "\n 1 consultar datos" +
+                        "\n 2 añadir piso" +
+                        "\n 3 eliminar piso" +
+                        "\n 4 actualizar piso" +
+                        "\n 0 finalizar consulta");
+                aux=scan.nextInt();
+
+                switch (aux){
+                    case 1 -> consultar(conn);
+                    case 2 -> insertar(conn);
+                    case 3 -> eliminar(conn);
+                    case 4 -> actualizar(conn);
+                }
+            }while (aux!=0);
+
 
             //aqui un menu si eso
             //insertar(conn);
