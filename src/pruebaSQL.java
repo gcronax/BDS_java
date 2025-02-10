@@ -33,10 +33,15 @@ public class pruebaSQL {
             rs = stmt.executeQuery("SELECT * FROM employees");
 // Procesar los resultados
 
-
+            System.out.println(rs.toString());
 
             while (rs.next()) {
                 //aqui esta la magia
+
+
+
+
+
                 System.out.println("Employee ID: " + rs.getInt("id"));
                 System.out.println("Employee Name: " + rs.getString("name"));
             }
