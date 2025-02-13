@@ -1,3 +1,5 @@
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 import java.sql.*;
 import java.util.Scanner;
 
@@ -61,23 +63,64 @@ public class alquileres {
 
 
 
+//            System.out.printf("%-5s %-20s %-10s %-6s %-30s %-10s %-12s %-5s %-15s %-10s %-10s %-10s%n",
+//                    "ID", "Dirección", "Puerta", "Num", "Descripción", "Superficie", "Habitaciones", "Baños", "Alquiler", "Edificio_ID", "Valor", "Propietario_ID");
+//            System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------------");
+//
+//            while (rs.next()) {
+//                System.out.printf("%-5d %-20s %-10s %-6d %-30s %-10.2f %-12d %-5d %-15.2f %-10d %-10.2f %-10d%n",
+//                        rs.getInt("id_piso"),
+//                        rs.getString("direccion"),
+//                        rs.getString("puerta"),
+//                        rs.getInt("numero"),
+//                        rs.getString("descripcion"),
+//                        rs.getDouble("superficie"),
+//                        rs.getInt("cantidad_habitaciones"),
+//                        rs.getInt("cantidad_baños"),
+//                        rs.getDouble("precio_alquiler"),
+//                        rs.getInt("id_edificio"),
+//                        rs.getDouble("valor_piso"),
+//                        rs.getInt("id_propietario"));
+//            }
+            JFrame frame = new JFrame("Listado de Pisos");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(900, 400);
+
+            // Definir los nombres de las columnas
+            String[] columnas = {"ID", "Dirección", "Puerta", "Número", "Descripción", "Superficie",
+                    "Habitaciones", "Baños", "Alquiler", "Edificio_ID", "Valor", "Propietario_ID"};
+
+            // Crear modelo de la tabla
+            DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
+            JTable tabla = new JTable(modelo);
+
             while (rs.next()) {
-                //aqui esta la magia
-                System.out.println("Piso ID: " + rs.getInt("id_piso"));
-                System.out.println("Piso direccion: " + rs.getString("direccion"));
-                System.out.println("Piso puerta: " + rs.getString("puerta"));
-                System.out.println("Piso numero: " + rs.getInt("numero"));
-                System.out.println("Piso descripcion: " + rs.getString("descripcion"));
-                System.out.println("Piso superficie: " + rs.getDouble("superficie"));
-                System.out.println("Piso cantidad_habitaciones: " + rs.getInt("cantidad_habitaciones"));
-                System.out.println("Piso cantidad_baños: " + rs.getInt("cantidad_baños"));
-                System.out.println("Piso precio_alquiler: " + rs.getDouble("precio_alquiler"));
-                System.out.println("Piso id_edificio: " + rs.getInt("id_edificio"));
-                System.out.println("Piso valor_piso: " + rs.getDouble("valor_piso"));
-                System.out.println("Piso id_propietario: " + rs.getInt("id_propietario"));
-
-
+                Object[] fila = {
+                        rs.getInt("id_piso"),
+                        rs.getString("direccion"),
+                        rs.getString("puerta"),
+                        rs.getInt("numero"),
+                        rs.getString("descripcion"),
+                        rs.getDouble("superficie"),
+                        rs.getInt("cantidad_habitaciones"),
+                        rs.getInt("cantidad_baños"),
+                        rs.getDouble("precio_alquiler"),
+                        rs.getInt("id_edificio"),
+                        rs.getDouble("valor_piso"),
+                        rs.getInt("id_propietario")
+                };
+                modelo.addRow(fila);
             }
+
+
+            JScrollPane scrollPane = new JScrollPane(tabla);
+            frame.add(scrollPane);
+
+            // Mostrar la ventana
+            frame.setVisible(true);
+
+
+
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
