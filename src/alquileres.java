@@ -29,7 +29,51 @@ public class alquileres {
                     case 4 -> actualizar(conn);
                 }
             }while (aux!=0);
-
+//            CREATE TABLE propietarios (
+//                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+//                    nombre TEXT NOT NULL,
+//                    telefono TEXT,
+//                    email TEXT UNIQUE
+//            );
+//
+//            CREATE TABLE propiedades (
+//                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+//                    direccion TEXT NOT NULL,
+//                    ciudad TEXT NOT NULL,
+//                    precio REAL NOT NULL,
+//                    id_propietario INTEGER NOT NULL,
+//                    FOREIGN KEY (id_propietario) REFERENCES propietarios(id) ON DELETE CASCADE
+//            );
+//
+//            CREATE TABLE inquilinos (
+//                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+//                    nombre TEXT NOT NULL,
+//                    telefono TEXT,
+//                    email TEXT UNIQUE,
+//                    dni TEXT UNIQUE NOT NULL
+//            );
+//
+//            CREATE TABLE contratos (
+//                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+//                    id_inquilino INTEGER NOT NULL,
+//                    id_propiedad INTEGER NOT NULL,
+//                    fecha_inicio DATE NOT NULL,
+//                    fecha_fin DATE NOT NULL,
+//                    monto_mensual REAL NOT NULL,
+//                    estado TEXT CHECK(estado IN ('activo', 'finalizado', 'pendiente')) DEFAULT 'activo',
+//                    FOREIGN KEY (id_inquilino) REFERENCES inquilinos(id) ON DELETE CASCADE,
+//            FOREIGN KEY (id_propiedad) REFERENCES propiedades(id) ON DELETE CASCADE
+//);
+//
+//            CREATE TABLE pagos (
+//                    id INTEGER PRIMARY KEY AUTOINCREMENT,
+//                    id_contrato INTEGER NOT NULL,
+//                    fecha_pago DATE NOT NULL,
+//                    monto REAL NOT NULL,
+//                    estado TEXT CHECK(estado IN ('pendiente', 'pagado', 'atrasado')) DEFAULT 'pendiente',
+//                    FOREIGN KEY (id_contrato) REFERENCES contratos(id) ON DELETE CASCADE
+//);
+//
 
             //aqui un menu si eso
             //insertar(conn);
@@ -62,26 +106,6 @@ public class alquileres {
 // Procesar los resultados
 
 
-
-//            System.out.printf("%-5s %-20s %-10s %-6s %-30s %-10s %-12s %-5s %-15s %-10s %-10s %-10s%n",
-//                    "ID", "Dirección", "Puerta", "Num", "Descripción", "Superficie", "Habitaciones", "Baños", "Alquiler", "Edificio_ID", "Valor", "Propietario_ID");
-//            System.out.println("-----------------------------------------------------------------------------------------------------------------------------------------------------------------");
-//
-//            while (rs.next()) {
-//                System.out.printf("%-5d %-20s %-10s %-6d %-30s %-10.2f %-12d %-5d %-15.2f %-10d %-10.2f %-10d%n",
-//                        rs.getInt("id_piso"),
-//                        rs.getString("direccion"),
-//                        rs.getString("puerta"),
-//                        rs.getInt("numero"),
-//                        rs.getString("descripcion"),
-//                        rs.getDouble("superficie"),
-//                        rs.getInt("cantidad_habitaciones"),
-//                        rs.getInt("cantidad_baños"),
-//                        rs.getDouble("precio_alquiler"),
-//                        rs.getInt("id_edificio"),
-//                        rs.getDouble("valor_piso"),
-//                        rs.getInt("id_propietario"));
-//            }
             JFrame frame = new JFrame("Listado de Pisos");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(900, 400);
