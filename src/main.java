@@ -8,7 +8,7 @@ public class main {
         do {
             System.out.println("dime que deseas hacer: " +
                     "\n 1 Gestion alquileres" +
-                    "\n 2 Gestion inquilinos" +
+                    "\n 2 Gestion propietarios" +
                     "\n 3 Gestion" +
                     "\n 4 Gestion" +
                     "\n 0 Finalizar programa");
@@ -17,7 +17,7 @@ public class main {
 
             switch (aux){
                 case 1 -> alquileres.menuAlquileres();
-                case 2 -> alquileres.menuAlquileres();
+                case 2 -> propietarios.menuPropietarios();
                 case 3 -> alquileres.menuAlquileres();
                 case 4 -> alquileres.menuAlquileres();
             }
