@@ -61,15 +61,17 @@ public class propietarios {
             ResultSetMetaData metaData = rs.getMetaData();
             // Obtener el número de columnas
             int columnCount = metaData.getColumnCount();
-            JFrame frame = new JFrame("Listado de "+auxnametabla+"");
-            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setSize(900, 400);
-
             // Definir los nombres de las columnas
             String[] columnas = new String[columnCount];
             for (int i = 1; i <= columnCount; i++) {
                 columnas[i - 1] = metaData.getColumnName(i); // Guardar el valor de la columna en el array
             }
+
+            JFrame frame = new JFrame("Listado de "+auxnametabla+"");
+            frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+            frame.setSize(900, 400);
+
+
             // Crear modelo de la tabla
             DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
             JTable tabla = new JTable(modelo);
@@ -99,7 +101,45 @@ public class propietarios {
         }
     }
     public static void insertar(Connection conn) {
+        Statement stmt = null;
+        ResultSet rs = null;
+        String[] columnasaux = new String[0];
+        try {
+// Crear una declaración
+            stmt = conn.createStatement();
+// Ejecutar consulta SQL
+            rs = stmt.executeQuery("SELECT * FROM "+auxnametabla+"");
+// Procesar los resultados
+            ResultSetMetaData metaData = rs.getMetaData();
+            // Obtener el número de columnas
+            int columnCount = metaData.getColumnCount();
+            // Definir los nombres de las columnas
+            String[] columnas = new String[columnCount];
+            for (int i = 1; i <= columnCount; i++) {
+                columnas[i - 1] = metaData.getColumnName(i); // Guardar el valor de la columna en el array
+            }
+            columnasaux=columnas;
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        } finally {
+            try {
+                if (rs != null) rs.close();
+                if (stmt != null) stmt.close();
+            } catch (Exception ex) {
+                System.out.println(ex.getMessage());
+            }
+        }
         Scanner scanner = new Scanner(System.in);
+        String[] nombresCampos=new String[columnasaux.length];
+
+        for (String aux:columnasaux){
+            int i=0;
+            System.out.println("ingrese "+aux+": ");
+            nombresCampos[i++] = scanner.nextLine();
+
+        }
+
 
         System.out.print("Ingrese la direccion: ");
         String direccion = scanner.nextLine();
@@ -114,7 +154,7 @@ public class propietarios {
 // Preparar la sentencia SQL para insertar un nuevo empleado
             String sql = "INSERT INTO "+auxnametabla+" (direccion, id_propietario, ciudad) VALUES (?, ?, ?)";
             pstmt = conn.prepareStatement(sql);
-
+//            getColumnTypeName(int column)
             pstmt.setString(1, direccion);  // Dirección del "+auxname+"
 
             pstmt.setInt(2, idPropietario); // ID del propietario
