@@ -58,38 +58,35 @@ public class propietarios {
 // Ejecutar consulta SQL
             rs = stmt.executeQuery("SELECT * FROM "+auxnametabla+"");
 // Procesar los resultados
-
-
+            ResultSetMetaData metaData = rs.getMetaData();
+            // Obtener el número de columnas
+            int columnCount = metaData.getColumnCount();
             JFrame frame = new JFrame("Listado de "+auxnametabla+"");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
             frame.setSize(900, 400);
 
             // Definir los nombres de las columnas
-            String[] columnas = {"ID", "Dirección", "Propietario_ID", "Ciudad"};
-
+            String[] columnas = new String[columnCount];
+            for (int i = 1; i <= columnCount; i++) {
+                columnas[i - 1] = metaData.getColumnName(i); // Guardar el valor de la columna en el array
+            }
             // Crear modelo de la tabla
             DefaultTableModel modelo = new DefaultTableModel(columnas, 0);
             JTable tabla = new JTable(modelo);
-
             while (rs.next()) {
-                Object[] fila = {
-                        rs.getInt("id_piso"),
-                        rs.getString("direccion"),
-                        rs.getInt("id_propietario"),
-                        rs.getString("ciudad")
-                };
+                // Crear un array para almacenar los valores de la fila
+                Object[] fila = new Object[columnCount];
+
+                // Recorrer cada columna y guardar su valor en el array
+                for (int i = 1; i <= columnCount; i++) {
+                    fila[i - 1] = rs.getObject(i); // Guardar el valor de la columna en el array
+                }
                 modelo.addRow(fila);
             }
-
-
             JScrollPane scrollPane = new JScrollPane(tabla);
             frame.add(scrollPane);
-
             // Mostrar la ventana
             frame.setVisible(true);
-
-
-
         } catch (Exception e) {
             System.out.println(e.getMessage());
         } finally {
