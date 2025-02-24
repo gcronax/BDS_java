@@ -4,11 +4,11 @@ import java.sql.*;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class propietarios {
-    public static String auxname="propietario";
-    public static String auxnametabla="propietarios";
+public class inquilinos {
+    public static String auxname="inquilino";
+    public static String auxnametabla="inquilinos";
 
-    public static void menuPropietarios() {
+    public static void menuInquilinos() {
         String url = "jdbc:sqlite:sample.db"; // Ruta de la base de datos
         Connection conn = null;
         try {
