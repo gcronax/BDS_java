@@ -212,14 +212,14 @@ public class propietarios {
     public static void eliminar(Connection conn) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese el ID de "+auxname+" que desea eliminar: ");
-        int id_piso = scanner.nextInt();
+        int id_propietario = scanner.nextInt();
         scanner.nextLine();
         PreparedStatement pstmt = null;
         try {
 // Preparar la sentencia SQL para eliminar el empleado por ID
-            String sql = "DELETE FROM "+auxnametabla+" WHERE id_piso = ?";
+            String sql = "DELETE FROM "+auxnametabla+" WHERE id_propietario = ?";
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, id_piso);
+            pstmt.setInt(1, id_propietario);
 // Ejecutar el DELETE
             int rowsDeleted = pstmt.executeUpdate();
             if (rowsDeleted > 0) {
@@ -265,17 +265,17 @@ public class propietarios {
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
-        System.out.println(Arrays.toString(columnasaux));
+        //System.out.println(Arrays.toString(columnasaux));
 
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese el ID del "+auxname+" que desea actualizar: ");
-        String id_piso = scanner.nextLine();
+        int id_propietario = scanner.nextInt();
 
 
 
 
         System.out.print("Ingrese el ID del nuevo propietario: ");
-        int id_propietario = scanner.nextInt();
+        int id_propietarionuevo = scanner.nextInt();
         PreparedStatement pstmt = null;
 
 
@@ -284,10 +284,10 @@ public class propietarios {
 
         try {
 // Preparar la sentencia SQL para actualizar el nombre del empleado
-            String sql = "UPDATE "+auxnametabla+" SET id_propietario = ? WHERE id_piso = ?";
+            String sql = "UPDATE "+auxnametabla+" SET id_propietario = ? WHERE id_propietario = ?";
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, id_propietario);
-            pstmt.setString(2, id_piso);
+            pstmt.setInt(1, id_propietarionuevo);
+            pstmt.setInt(2, id_propietario);
 // Ejecutar el UPDATE
             int rowsUpdated = pstmt.executeUpdate();
             if (rowsUpdated > 0) {

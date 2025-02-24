@@ -4,11 +4,11 @@ import java.sql.*;
 import java.util.Arrays;
 import java.util.Scanner;
 
-public class inquilinos {
-    public static String auxname="inquilino";
-    public static String auxnametabla="inquilinos";
+public class contrato_inquilino {
+    public static String auxname="contrato_inquilino";
+    public static String auxnametabla="contrato_inquilino";
 
-    public static void menuInquilinos() {
+    public static void menuContrato_Inquilino() {
         String url = "jdbc:sqlite:sample.db"; // Ruta de la base de datos
         Connection conn = null;
         try {
@@ -175,10 +175,15 @@ public class inquilinos {
             pstmt = conn.prepareStatement(sql.toString());
 
             for (int i = 1; i < nombresCampos.length; i++) {
-                //System.out.println(auxtipo[i]); //ayuda a saber el tipo de de dato
+                System.out.println(auxtipo[i]); //ayuda a saber el tipo de de dato
                 if(auxtipo[i]==12){
                     pstmt.setString(i, nombresCampos[i]);
+                }if(auxtipo[i]==4){
+                    pstmt.setInt(i, Integer.parseInt(nombresCampos[i]));
+                }if(auxtipo[i]==2){
+                    pstmt.setDouble(i, Double.parseDouble(nombresCampos[i]));
                 }
+
 
 
 
@@ -212,14 +217,14 @@ public class inquilinos {
     public static void eliminar(Connection conn) {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese el ID de "+auxname+" que desea eliminar: ");
-        int id_inquilino = scanner.nextInt();
+        int id_contrato = scanner.nextInt();
         scanner.nextLine();
         PreparedStatement pstmt = null;
         try {
 // Preparar la sentencia SQL para eliminar el empleado por ID
-            String sql = "DELETE FROM "+auxnametabla+" WHERE id_inquilino = ?";
+            String sql = "DELETE FROM "+auxnametabla+" WHERE id_contrato = ?";
             pstmt = conn.prepareStatement(sql);
-            pstmt.setInt(1, id_inquilino);
+            pstmt.setInt(1, id_contrato);
 // Ejecutar el DELETE
             int rowsDeleted = pstmt.executeUpdate();
             if (rowsDeleted > 0) {
@@ -269,13 +274,13 @@ public class inquilinos {
 
         Scanner scanner = new Scanner(System.in);
         System.out.print("Ingrese el ID del "+auxname+" que desea actualizar: ");
-        String id_inquilino = scanner.nextLine();
+        String id_contrato = scanner.nextLine();
 
 
 
 
-        System.out.print("Ingrese el telefono actualizado del inquilino: ");
-        String telefono = scanner.nextLine();
+        System.out.print("Ingrese el pago_mensual actualizado del inquilino: ");
+        int pago_mensual = scanner.nextInt();
         PreparedStatement pstmt = null;
 
 
@@ -284,10 +289,10 @@ public class inquilinos {
 
         try {
 // Preparar la sentencia SQL para actualizar el nombre del empleado
-            String sql = "UPDATE "+auxnametabla+" SET telefono = ? WHERE "+columnasaux[0]+" = ?";
+            String sql = "UPDATE "+auxnametabla+" SET pago_mensual = ? WHERE "+columnasaux[0]+" = ?";
             pstmt = conn.prepareStatement(sql);
-            pstmt.setString(1, telefono);
-            pstmt.setString(2, id_inquilino);
+            pstmt.setInt(1, pago_mensual);
+            pstmt.setString(2, id_contrato);
 // Ejecutar el UPDATE
             int rowsUpdated = pstmt.executeUpdate();
             if (rowsUpdated > 0) {

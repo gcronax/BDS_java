@@ -10,7 +10,7 @@ public class main {
                     "\n 1 Gestion alquileres" +
                     "\n 2 Gestion propietarios" +
                     "\n 3 Gestion inquilinos" +
-                    "\n 4 Gestion" +
+                    "\n 4 Gestion contrato_inquilino" +
                     "\n 0 Finalizar programa");
 
             aux=scan.nextInt();
@@ -19,7 +19,7 @@ public class main {
                 case 1 -> alquileres.menuAlquileres();
                 case 2 -> propietarios.menuPropietarios();
                 case 3 -> inquilinos.menuInquilinos();
-                case 4 -> alquileres.menuAlquileres();
+                case 4 -> contrato_inquilino.menuContrato_Inquilino();
             }
         }while (aux!=0);
     }
