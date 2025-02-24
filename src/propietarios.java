@@ -161,14 +161,7 @@ public class propietarios {
         sql.append(") ");
         values.append(") ");
         sql.append(values);
-//        System.out.print("Ingrese la direccion: ");
-//        String direccion = scanner.nextLine();
-//
-//        System.out.print("Ingrese el ID del propietario: ");
-//        int idPropietario = scanner.nextInt();
-//        scanner.nextLine();
-//        System.out.print("Ingrese la ciudad: ");
-//        String ciudad = scanner.nextLine();
+
         PreparedStatement pstmt = null;
 
         try {
@@ -184,17 +177,7 @@ public class propietarios {
 
 
             }
-// Preparar la sentencia SQL para insertar un nuevo empleado
-//            String sql = "INSERT INTO "+auxnametabla+" (direccion, id_propietario, ciudad) VALUES (?, ?, ?)";
-//            pstmt = conn.prepareStatement(sql);
-//          getColumnTypeName(int column)
-//            pstmt.setString(1, direccion);  // Dirección del "+auxname+"
-//
-//            pstmt.setInt(2, idPropietario); // ID del propietario
-//            pstmt.setString(3, ciudad);
 
-
-// Ejecutar el INSERT
             int rowsInserted = pstmt.executeUpdate();
             if (rowsInserted > 0) {
                 System.out.println(""+auxname+" insertado exitosamente.");
