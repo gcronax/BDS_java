@@ -175,7 +175,7 @@ public class contrato_inquilino {
             pstmt = conn.prepareStatement(sql.toString());
 
             for (int i = 1; i < nombresCampos.length; i++) {
-                System.out.println(auxtipo[i]); //ayuda a saber el tipo de de dato
+                //System.out.println(auxtipo[i]); //ayuda a saber el tipo de de dato
                 if(auxtipo[i]==12){
                     pstmt.setString(i, nombresCampos[i]);
                 }if(auxtipo[i]==4){
